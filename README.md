@@ -34,3 +34,7 @@
 - Javascript Object Notation (x)
 - Jingle Server Obligation Net
 - Javascript Online Negotiator
+
+---
+
+![mvp wireframe](./mvp-wireframe.png)
