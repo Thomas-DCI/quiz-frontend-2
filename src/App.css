@@ -21,3 +21,19 @@ footer {
   height: 40px;
   background-color: dimgrey;
 }
+.footercontainer {
+  display: flex;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+a:link,
+a:visited,
+a:active {
+  color: ghostwhite;
+  text-decoration: none;
+}
