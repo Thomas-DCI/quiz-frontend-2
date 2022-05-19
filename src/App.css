@@ -1,14 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono&family=Poppins:wght@400;700&display=swap");
+
+:root {
+  --light-blue: #6897d4;
+  --dark-blue: #0b203b;
+  --green: #5f9ea0;
+  --sepia: #ac9891;
+  --red: #d47268;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px;
-  background-color: cadetblue;
+  height: 2.7rem;
+  background-color: var(--green);
   color: ghostwhite;
-  font-size: 1.8em;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
   font-weight: bold;
   text-align: center;
+  font-family: "Azeret Mono", monospace;
 }
 #root {
   margin-top: 60px;
@@ -20,7 +34,7 @@ footer {
   left: 0;
   width: 100%;
   height: 40px;
-  background-color: dimgrey;
+  background-color: var(--sepia);
 }
 .footercontainer {
   display: flex;
