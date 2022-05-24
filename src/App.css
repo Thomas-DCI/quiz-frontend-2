@@ -48,9 +48,9 @@ footer {
   align-items: center;
 }
 
-a:link,
-a:visited,
-a:active {
+footer a:link,
+footer a:visited,
+footer a:active {
   color: ghostwhite;
   text-decoration: none;
 }

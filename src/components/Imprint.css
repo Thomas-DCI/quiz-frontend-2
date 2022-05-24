@@ -1,0 +1,11 @@
+.paragraphWithIcon {
+  display: flex;
+  vertical-align: center;
+}
+.link__icon {
+  height: 1.125rem;
+  margin-left: 0.33rem;
+}
+.icon {
+  height: 100%;
+}
