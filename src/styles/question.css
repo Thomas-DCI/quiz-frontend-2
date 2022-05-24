@@ -1,0 +1,17 @@
+.answer-button {
+  padding: 12px;
+  border: none;
+  background-color: var(--purple);
+  border-radius: 5px;
+  color: white;
+  text-align: start;
+  font-size: 1.2em;
+  margin: 2px;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
