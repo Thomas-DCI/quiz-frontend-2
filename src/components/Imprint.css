@@ -4,8 +4,7 @@
 }
 .link__icon {
   height: 1.125rem;
-  margin-left: 0.33rem;
-}
-.icon {
-  height: 100%;
+  line-height: 1.125rem;
+  margin-right: 0.33rem;
+  color: var(--light-blue);
 }

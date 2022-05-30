@@ -1,4 +1,5 @@
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 import "./Imprint.css";
 
 export const Imprint = () => {
@@ -11,19 +12,15 @@ export const Imprint = () => {
       </p>
       <h3>Woche #2</h3>
       <p className="paragraphWithIcon">
-        Frontend: Ralf
         <a
           className="link__icon"
           href="https://github.com/ralf-siewert-dci/quiz-frontend"
           target="_blank"
           rel="noreferrer"
         >
-          <img
-            className="icon"
-            src="icons/PNG/GitHub-Mark-32px.png"
-            alt="GitHub Link"
-          />
+          <FaGithub />
         </a>
+        Frontend: Ralf
         <br />
       </p>
       <p>Backend & zusätzliches Frontend: Christian</p>
