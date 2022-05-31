@@ -9,6 +9,7 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
         style={{
           display: "flex",
           flexDirection: "row",
+          backgroundColor: feedback === "correct" ? "green" : null,
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
