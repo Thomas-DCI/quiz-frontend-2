@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Highscores.css";
-
+import { useQuizContext } from "../contexts/QuizContext";
 export const Highscores = () => {
   // ----- State for Highscores -----
   const [highscores, setHighscores] = useState([]);
-
+  const { quizFinished, totalPoints } = useQuizContext();
   // ----- Load Highscores, when loading Component -----
   useEffect(() => {
     const loadHighscore = async () => {
@@ -56,6 +56,14 @@ export const Highscores = () => {
           ))}
         </tbody>
       </table>
+      {quizFinished === false ? (
+        <div>
+          {`Du hast ${totalPoints} Punkte erreicht.`}
+          <br />
+          {"Trage Deinen Namen ein und speichere Deinen Highscore:"}
+          <input type="text" value="" placeholder="Dein Name" />
+        </div>
+      ) : undefined}
     </main>
   );
 };

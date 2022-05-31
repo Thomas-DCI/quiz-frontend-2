@@ -5,6 +5,7 @@ export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
   const setPoints = (p) => {
     setTotalPoints(parseInt(totalPoints + p));
   };
@@ -25,7 +26,8 @@ export const QuizContextProvider = ({ children }) => {
         totalPoints,
         currentQuestion,
         setNextQuestion,
-        setPoints
+        setPoints,
+        quizFinished
       }}
     >
       {children}
