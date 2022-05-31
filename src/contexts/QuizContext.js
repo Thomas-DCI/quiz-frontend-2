@@ -27,7 +27,8 @@ export const QuizContextProvider = ({ children }) => {
         currentQuestion,
         setNextQuestion,
         setPoints,
-        quizFinished
+        quizFinished,
+        setQuizFinished
       }}
     >
       {children}

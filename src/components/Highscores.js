@@ -48,7 +48,7 @@ export const Highscores = () => {
         </thead>
         <tbody>
           {highscores.map((highscore, index) => (
-            <tr>
+            <tr key={`hs-${index}`}>
               <td>{index + 1}</td>
               <td>{highscore.player}</td>
               <td>{highscore.points}</td>
@@ -56,7 +56,7 @@ export const Highscores = () => {
           ))}
         </tbody>
       </table>
-      {quizFinished === false ? (
+      {quizFinished === true ? (
         <div>
           {`Du hast ${totalPoints} Punkte erreicht.`}
           <br />
