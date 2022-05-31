@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Question } from "./Question";
 import axios from "axios";
+
 export const QuizScreen = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
@@ -37,7 +38,10 @@ export const QuizScreen = () => {
         }}
       >
         {currentQuestion > -1 ? (
-          <Question question={questions[currentQuestion]} />
+          <Question
+            question={questions[currentQuestion]}
+            currentQuestion={currentQuestion} // will be replaced by Context
+          />
         ) : undefined}
         <button
           style={{

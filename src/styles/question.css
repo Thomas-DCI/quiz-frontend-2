@@ -8,6 +8,13 @@
   font-size: 1.2em;
   margin: 2px;
 }
+.answer-button:not(:first-of-type) {
+  margin-top: 0.5rem;
+}
+.answer-button:hover {
+  background-color: var(--purple-light);
+  cursor: pointer;
+}
 
 .question-container {
   display: flex;
