@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { MdHelp } from "react-icons/md";
 import { useUser } from "../contexts/UserContext";
+import { MdHelp } from "react-icons/md";
 
-const AnswerButton = ({ answer, ...rest }) => {
+const AnswerButton = ({ answer, feedback, ...rest }) => {
   return (
     <button className="answer-button" {...rest}>
       <div
@@ -30,13 +30,10 @@ const AnswerButton = ({ answer, ...rest }) => {
   );
 };
 
-// export const Question = ({ question, currentQuestion }) => {
 export const Question = ({ question }) => {
-  // currentQuestion will be replaced by Context
+  // Context -- Note: currentQuestion = index
   const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
     useUser();
-
-  // const [points, setPoints] = useState(0);
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
@@ -54,7 +51,7 @@ export const Question = ({ question }) => {
 
   // If you jump to the next question, there should be a reset of selected answers and their visual feedback
   useEffect(() => {
-    // reset visual feedback
+    // reset visual feedback (each element of array represents corresponding answer)
     const newFeedback = question.answers.map(() => null);
     // console.log(newFeedback);
     setAnswerFeedback(newFeedback);
@@ -67,7 +64,6 @@ export const Question = ({ question }) => {
 
   return (
     <div className="question-container">
-      <p>Points: {totalPoints}</p>
       <h1 style={{ textAlign: "center" }}>{question.question}</h1>
 
       {question.answers.map((answer, index) => {
@@ -75,6 +71,7 @@ export const Question = ({ question }) => {
           <AnswerButton
             key={index}
             answer={answer}
+            feedback={answerFeedback[index]}
             style={{ width: "100%" }}
             onClick={() => {
               setSelectedAnswer({
@@ -90,8 +87,9 @@ export const Question = ({ question }) => {
           setPoints(totalPoints + 4);
         }}
       >
-        Test Context (totalPoints);
+        Test Context (totalPoints)
       </button>
+      <p>{totalPoints}</p>
       <button
         onClick={() => {
           setNextQuestion(currentQuestion + 1);
@@ -99,6 +97,7 @@ export const Question = ({ question }) => {
       >
         Test Context (currentQuestion)
       </button>
+      <p>{currentQuestion}</p>
     </div>
   );
 };

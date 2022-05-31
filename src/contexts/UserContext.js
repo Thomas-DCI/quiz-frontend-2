@@ -4,7 +4,7 @@ export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [totalPoints, setTotalPoints] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(-1);
   const setPoints = (p) => {
     setTotalPoints(totalPoints + p);
   };
@@ -25,7 +25,7 @@ export const UserContextProvider = ({ children }) => {
         totalPoints,
         currentQuestion,
         setNextQuestion,
-        setPoints
+        setPoints,
       }}
     >
       {children}

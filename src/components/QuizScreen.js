@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Question } from "./Question";
 import axios from "axios";
+import { useUser } from "../contexts/UserContext";
+import { Question } from "./Question";
 
 export const QuizScreen = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(-1);
+  // currentQuestion is the index of the current question from the questions array,
+  // comes from Context and starts with -1
+  const { currentQuestion, setNextQuestion } = useUser();
 
   useEffect(() => {
     (async () => {
@@ -40,7 +43,7 @@ export const QuizScreen = () => {
         {currentQuestion > -1 ? (
           <Question
             question={questions[currentQuestion]}
-            currentQuestion={currentQuestion} // will be replaced by Context
+            currentQuestion={currentQuestion}
           />
         ) : undefined}
         <button
@@ -52,7 +55,7 @@ export const QuizScreen = () => {
           disabled={currentQuestion >= questions.length - 1}
           onClick={() => {
             if (currentQuestion < questions.length - 1) {
-              setCurrentQuestion(currentQuestion + 1);
+              setNextQuestion(currentQuestion + 1);
             }
           }}
         >
