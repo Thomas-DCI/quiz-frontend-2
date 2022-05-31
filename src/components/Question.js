@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MdHelp } from "react-icons/md";
+import { useUser } from "../contexts/UserContext";
 
 const AnswerButton = ({ answer, ...rest }) => {
   return (
@@ -29,9 +30,13 @@ const AnswerButton = ({ answer, ...rest }) => {
   );
 };
 
-// currentQuestion will be replaced by Context
-export const Question = ({ question, currentQuestion }) => {
-  const [points, setPoints] = useState(0);
+// export const Question = ({ question, currentQuestion }) => {
+export const Question = ({ question }) => {
+  // currentQuestion will be replaced by Context
+  const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
+    useUser();
+
+  // const [points, setPoints] = useState(0);
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
@@ -62,7 +67,7 @@ export const Question = ({ question, currentQuestion }) => {
 
   return (
     <div className="question-container">
-      <p>Points: {points}</p>
+      <p>Points: {totalPoints}</p>
       <h1 style={{ textAlign: "center" }}>{question.question}</h1>
 
       {question.answers.map((answer, index) => {
@@ -80,6 +85,20 @@ export const Question = ({ question, currentQuestion }) => {
           />
         );
       })}
+      <button
+        onClick={() => {
+          setPoints(totalPoints + 4);
+        }}
+      >
+        Test Context (totalPoints);
+      </button>
+      <button
+        onClick={() => {
+          setNextQuestion(currentQuestion + 1);
+        }}
+      >
+        Test Context (currentQuestion)
+      </button>
     </div>
   );
 };

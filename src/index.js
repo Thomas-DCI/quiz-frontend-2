@@ -8,20 +8,23 @@ import { Welcome } from "./components/Welcome";
 import { Imprint } from "./components/Imprint";
 import { Highscores } from "./components/Highscores";
 import { QuizScreen } from "./components/QuizScreen";
+import { UserContextProvider } from "./contexts/UserContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<Welcome />} />
-        <Route path="/imprint" element={<Imprint />} />
-        <Route path="/highscores" element={<Highscores />} />
-        <Route path="/quiz" element={<QuizScreen />}>
-          <Route path="/quiz/:id" element={<QuizScreen />} />
+  <UserContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Welcome />} />
+          <Route path="/imprint" element={<Imprint />} />
+          <Route path="/highscores" element={<Highscores />} />
+          <Route path="/quiz" element={<QuizScreen />}>
+            <Route path="/quiz/:id" element={<QuizScreen />} />
+          </Route>
         </Route>
-      </Route>
-    </Routes>
-  </BrowserRouter>
+      </Routes>
+    </BrowserRouter>
+  </UserContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
