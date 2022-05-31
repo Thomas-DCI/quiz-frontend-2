@@ -3,8 +3,7 @@
   vertical-align: center;
 }
 .link__icon {
-  height: 1.125rem;
-  line-height: 1.125rem;
+  margin-left: 0.67rem;
   margin-right: 0.33rem;
   color: var(--light-blue);
 }
