@@ -7,7 +7,7 @@ export const QuizScreen = () => {
   const [questions, setQuestions] = useState([]);
   // currentQuestion is the index of the current question from the questions array,
   // comes from Context and starts with -1
-  const { currentQuestion, setNextQuestion } = useUser();
+  const { currentQuestion, setNextQuestion, totalPoints } = useUser();
 
   useEffect(() => {
     (async () => {
@@ -38,8 +38,13 @@ export const QuizScreen = () => {
           alignItems: "center",
           width: "100%",
           maxWidth: 600,
+          position: "relative",
         }}
       >
+        {/* Overlay for total points */}
+        {currentQuestion > -1 ? (
+          <div className="overlay__points">{totalPoints}</div>
+        ) : null}
         {currentQuestion > -1 ? (
           <Question
             question={questions[currentQuestion]}

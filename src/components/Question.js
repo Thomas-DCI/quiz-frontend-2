@@ -47,7 +47,7 @@ export const Question = ({ question }) => {
   const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
     useUser();
   // remembers clicked answers in form of { answer-<index>: true, ... }
-  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [selectedAnswers, setSelectedAnswers] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
   const [answerFeedback, setAnswerFeedback] = useState({});
 
