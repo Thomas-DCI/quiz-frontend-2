@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600;700;800&family=Poppins:wght@400;700&display=swap");
 @import url("./styles/colors.css");
 @import url("./styles/question.css");
-
-body {
+* {
   font-family: "Poppins", sans-serif;
+}
+body {
   background-color: var(--background);
   color: white;
 }
@@ -57,7 +58,6 @@ footer a:active {
   color: ghostwhite;
   text-decoration: none;
 }
-
 h1 {
   font-size: 1.5em;
 }

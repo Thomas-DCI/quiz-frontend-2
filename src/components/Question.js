@@ -4,12 +4,23 @@ import { MdHelp } from "react-icons/md";
 
 const AnswerButton = ({ answer, feedback, ...rest }) => {
   return (
-    <button className="answer-button" {...rest}>
+    <button
+      className="answer-button"
+      style={{
+        width: "100%",
+        backgroundColor:
+          feedback === "correct"
+            ? "var(--green)"
+            : feedback === "incorrect"
+            ? "var(--red)"
+            : null,
+      }}
+      {...rest}
+    >
       <div
         style={{
           display: "flex",
           flexDirection: "row",
-          backgroundColor: feedback === "correct" ? "green" : null,
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -24,7 +35,7 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
             flexGrow: 1,
           }}
         >
-          <MdHelp style={{ fontSize: "3.4em", color: "var(--pale-green)" }} />
+          <MdHelp style={{ fontSize: "3.33rem", color: "#ffffff55" }} />
         </div>
       </div>
     </button>
@@ -36,31 +47,47 @@ export const Question = ({ question }) => {
   const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
     useUser();
   // remembers clicked answers in form of { answer-<index>: true, ... }
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
-  const [answerFeedback, setAnswerFeedback] = useState([]);
+  const [answerFeedback, setAnswerFeedback] = useState({});
 
   // If you select an answer, check if it's correct or not, give visual feedback about being right/wrong and calculate points
   useEffect(() => {
-    if (selectedAnswer !== null) {
-      console.log("useEffect!");
-      console.log(selectedAnswer);
-      console.log(question.answers);
-      // console.log(currentQuestion);
+    if (selectedAnswers !== null) {
+      console.log("----------");
+      console.log("selectedAnswers:", selectedAnswers);
+      // console.log("question.answers", question.answers);
+      console.log("answerFeedback:", answerFeedback);
+
+      // Look through selectedAnswers
+      console.log("Object.keys():", Object.keys(selectedAnswers));
+
+      let newFeedback = { ...answerFeedback };
+      Object.keys(selectedAnswers).forEach((answerIndex) => {
+        console.log(
+          answerIndex,
+          selectedAnswers[answerIndex],
+          question.answers[answerIndex].points
+        );
+        // figure out if selected answer was correct or not
+        let result;
+        if (question.answers[answerIndex].points) result = "correct";
+        else result = "incorrect";
+        newFeedback = { ...newFeedback, [answerIndex]: result };
+      });
+      setAnswerFeedback(newFeedback);
+      console.log("answerFeedback:", answerFeedback);
     }
-  }, [selectedAnswer]);
+  }, [selectedAnswers]);
 
   // If you jump to the next question, there should be a reset of selected answers and their visual feedback
   useEffect(() => {
-    // reset visual feedback (each element of array represents corresponding answer)
-    const newFeedback = question.answers.map(() => null);
-    // console.log(newFeedback);
-    setAnswerFeedback(newFeedback);
     // reset selected answers
-    if (currentQuestion > 0) {
-      console.log("Frage ändert sich!");
-      setSelectedAnswer(null);
-    }
+    // const selectedAnswersReset = question.answers.map(() => false);
+    setSelectedAnswers({});
+    // reset visual feedback (each element of array represents corresponding answer)
+    // const newFeedback = question.answers.map(() => null);
+    setAnswerFeedback({});
   }, [currentQuestion]);
 
   return (
@@ -73,11 +100,10 @@ export const Question = ({ question }) => {
             key={index}
             answer={answer}
             feedback={answerFeedback[index]}
-            style={{ width: "100%" }}
             onClick={() => {
-              setSelectedAnswer({
-                ...selectedAnswer,
-                [`answer-${index}`]: true,
+              setSelectedAnswers({
+                ...selectedAnswers,
+                [index]: true,
               });
             }}
           />
