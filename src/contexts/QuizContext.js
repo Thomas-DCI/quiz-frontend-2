@@ -1,12 +1,12 @@
 import { useEffect, useState, createContext, useContext } from "react";
 
-export const UserContext = createContext();
+export const QuizContext = createContext();
 
-export const UserContextProvider = ({ children }) => {
+export const QuizContextProvider = ({ children }) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const setPoints = (p) => {
-    setTotalPoints(totalPoints + p);
+    setTotalPoints(parseInt(totalPoints + p));
   };
   const setNextQuestion = () => {
     setCurrentQuestion(currentQuestion + 1);
@@ -20,7 +20,7 @@ export const UserContextProvider = ({ children }) => {
   }, [totalPoints, currentQuestion]);
 
   return (
-    <UserContext.Provider
+    <QuizContext.Provider
       value={{
         totalPoints,
         currentQuestion,
@@ -29,10 +29,10 @@ export const UserContextProvider = ({ children }) => {
       }}
     >
       {children}
-    </UserContext.Provider>
+    </QuizContext.Provider>
   );
 };
 
-export const useUser = () => {
-  return useContext(UserContext);
+export const useQuizContext = () => {
+  return useContext(QuizContext);
 };

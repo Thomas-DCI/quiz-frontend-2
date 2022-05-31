@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import { MdHelp } from "react-icons/md";
-import { useUser } from "../contexts/UserContext";
+import { useQuizContext } from "../contexts/QuizContext";
 
 const AnswerButton = ({ answer, ...rest }) => {
   return (
@@ -33,7 +33,7 @@ const AnswerButton = ({ answer, ...rest }) => {
 
 export const Question = ({ question }) => {
   const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
-    useUser();
+    useQuizContext();
   return (
     <div className="question-container">
       <h1 style={{ textAlign: "center" }}>{question.question}</h1>
@@ -43,7 +43,7 @@ export const Question = ({ question }) => {
       })}
       <button
         onClick={() => {
-          setPoints(totalPoints + 4);
+          setPoints(4);
         }}
       >
         Test Context (totalPoints);
