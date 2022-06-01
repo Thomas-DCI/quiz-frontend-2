@@ -11,6 +11,7 @@ export const QuizContextProvider = ({ children }) => {
     points: 0,
     locked: false,
   });
+  const [quizFinished, setQuizFinished] = useState(false);
 
   const setPointsTotal = (p) => {
     setTotalPoints(parseInt(totalPoints + p));
@@ -47,6 +48,8 @@ export const QuizContextProvider = ({ children }) => {
         currentPoints,
         wrongAnswer,
         addCurrentPoints,
+        quizFinished,
+        setQuizFinished,
       }}
     >
       {children}
