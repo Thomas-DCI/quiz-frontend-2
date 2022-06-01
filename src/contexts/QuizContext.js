@@ -5,11 +5,29 @@ export const QuizContext = createContext();
 export const QuizContextProvider = ({ children }) => {
   const [totalPoints, setTotalPoints] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
-  const setPoints = (p) => {
+  // Points for "local use" (calculated new for each question)
+  // also manages case of a wrong answer (points = 0, no more answers possible)
+  const [currentPoints, setCurrentPoints] = useState({
+    points: 0,
+    locked: false,
+  });
+
+  const setPointsTotal = (p) => {
     setTotalPoints(parseInt(totalPoints + p));
   };
+
   const setNextQuestion = () => {
     setCurrentQuestion(currentQuestion + 1);
+  };
+
+  // If wrong answer was clicked, reset to points for current question to 0
+  // and lock current question from any further answers
+  const wrongAnswer = () => {
+    setCurrentPoints({ points: 0, locked: true });
+  };
+
+  const addCurrentPoint = (p) => {
+    setCurrentPoints({ points: currentPoints.points + p, locked: false });
   };
 
   useEffect(() => {
@@ -23,9 +41,12 @@ export const QuizContextProvider = ({ children }) => {
     <QuizContext.Provider
       value={{
         totalPoints,
+        setPointsTotal,
         currentQuestion,
         setNextQuestion,
-        setPoints,
+        currentPoints,
+        wrongAnswer,
+        addCurrentPoint,
       }}
     >
       {children}

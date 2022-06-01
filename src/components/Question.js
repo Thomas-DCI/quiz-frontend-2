@@ -8,6 +8,7 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
       className="answer-button"
       style={{
         width: "100%",
+        transition: "background-color 0.33s",
         backgroundColor:
           feedback === "correct"
             ? "var(--green)"
@@ -44,31 +45,51 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
 
 export const Question = ({ question }) => {
   // Context -- Note: currentQuestion = index
-  const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
-    useQuizContext();
+  const {
+    currentQuestion,
+    totalPoints,
+    currentPoints,
+    wrongAnswer,
+    addCurrentPoint,
+  } = useQuizContext();
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswers, setSelectedAnswers] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
   const [answerFeedback, setAnswerFeedback] = useState({});
+  // manage points for current question
+  // const [currentPoints, setCurrentPoints] = useState({
+  //   points: 0,
+  //   locked: false,
+  // });
 
+  // ---------- RESET ----------
+  // If you jump to the next question, there should be a reset of selected answers and their visual feedback
+  useEffect(() => {
+    // reset selected answers
+    setSelectedAnswers({});
+    // reset visual feedback (each element of array represents corresponding answer)
+    setAnswerFeedback({});
+  }, [currentQuestion]);
+
+  // ---------- GAME LOGIC ----------
   // If you select an answer, check if it's correct or not, give visual feedback about being right/wrong and calculate points
   useEffect(() => {
     if (selectedAnswers !== null) {
-      console.log("----------");
-      console.log("selectedAnswers:", selectedAnswers);
-      // console.log("question.answers", question.answers);
-      console.log("answerFeedback:", answerFeedback);
+      // console.log("----------");
+      // console.log("selectedAnswers:", selectedAnswers);
+      // // console.log("question.answers", question.answers);
+      // console.log("answerFeedback:", answerFeedback);
 
-      // Look through selectedAnswers
-      console.log("Object.keys():", Object.keys(selectedAnswers));
+      // // Look through selectedAnswers
+      // console.log("Object.keys():", Object.keys(selectedAnswers));
 
       let newFeedback = { ...answerFeedback };
       Object.keys(selectedAnswers).forEach((answerIndex) => {
-        console.log(
-          answerIndex,
-          selectedAnswers[answerIndex],
-          question.answers[answerIndex].points
-        );
+        // console.log(
+        //   answerIndex,
+        //   selectedAnswers[answerIndex],
+        //   question.answers[answerIndex].points
+        // );
         // figure out if selected answer was correct or not
         let result;
         if (question.answers[answerIndex].points) {
@@ -82,17 +103,9 @@ export const Question = ({ question }) => {
         newFeedback = { ...newFeedback, [answerIndex]: result };
       });
       setAnswerFeedback(newFeedback);
-      console.log("answerFeedback:", answerFeedback);
+      // console.log("answerFeedback:", answerFeedback);
     }
   }, [selectedAnswers]);
-
-  // If you jump to the next question, there should be a reset of selected answers and their visual feedback
-  useEffect(() => {
-    // reset selected answers
-    setSelectedAnswers({});
-    // reset visual feedback (each element of array represents corresponding answer)
-    setAnswerFeedback({});
-  }, [currentQuestion]);
 
   return (
     <div className="question-container">
@@ -109,26 +122,30 @@ export const Question = ({ question }) => {
                 ...selectedAnswers,
                 [index]: true,
               });
+              // console.log("Button onClick:", answer.points);
+              if (answer.points && !currentPoints.locked) addCurrentPoint();
+              else wrongAnswer();
             }}
           />
         );
       })}
-      <button
+      {/* <button
         onClick={() => {
           setPoints(4);
         }}
       >
         Test Context (totalPoints)
-      </button>
-      <p>{totalPoints}</p>
-      <button
+      </button> */}
+      {/* <button
         onClick={() => {
           setNextQuestion(currentQuestion + 1);
         }}
       >
         Test Context (currentQuestion)
-      </button>
-      <p>{currentQuestion}</p>
+      </button> */}
+      <p>currentPoints: {JSON.stringify(currentPoints)}</p>
+      <p>totalPoints: {totalPoints}</p>
+      <p>currentQuestion: {currentQuestion}</p>
     </div>
   );
 };

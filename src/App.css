@@ -66,6 +66,6 @@ h1 {
   position: absolute;
   top: 0;
   /* right: 0; */
-  transform: translateX(150px);
+  /* transform: translate(150px, 50px); */
   padding: 1.67rem 1.33rem;
 }
