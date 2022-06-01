@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Welcome = () => {
   return (
@@ -13,6 +14,9 @@ export const Welcome = () => {
         Highscore-Liste eintragen kannst.
       </p>
       <p>Viel Spaß und hol' Dir den Highscore!</p>
+      <p>
+        <Link to="/quiz">Zum Quiz!</Link> (beim ersten Mal auf next klicken!)
+      </p>
     </>
   );
 };
