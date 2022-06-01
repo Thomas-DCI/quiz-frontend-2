@@ -39,16 +39,17 @@ export const Highscores = () => {
   }, [userHighScore]);
 
   const saveHighscore = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_HOST}/highscores`,
-        userHighScore
-      );
-      console.log(response);
-      setHighScoreSaved(true);
-    } catch (error) {
-      console.log(error);
-    }
+    if (userHighScore.player)
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_HOST}/highscores`,
+          userHighScore
+        );
+        console.log(response);
+        setHighScoreSaved(true);
+      } catch (error) {
+        console.log(error);
+      }
   };
 
   // ----- Render Component -----
@@ -74,7 +75,7 @@ export const Highscores = () => {
           ))}
         </tbody>
       </table>
-      {quizFinished !== true ? (
+      {quizFinished === true && !highScoreSaved ? (
         <div>
           {`Du hast ${totalPoints} Punkte erreicht.`}
           <br />
