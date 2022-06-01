@@ -50,7 +50,7 @@ export const Question = ({ question }) => {
     totalPoints,
     currentPoints,
     wrongAnswer,
-    addCurrentPoint,
+    addCurrentPoints,
   } = useQuizContext();
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswers, setSelectedAnswers] = useState(null);
@@ -123,7 +123,7 @@ export const Question = ({ question }) => {
                 [index]: true,
               });
               // console.log("Button onClick:", answer.points);
-              if (answer.points && !currentPoints.locked) addCurrentPoint();
+              if (answer.points && !currentPoints.locked) addCurrentPoints(1);
               else wrongAnswer();
             }}
           />

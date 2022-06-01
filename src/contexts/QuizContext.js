@@ -26,7 +26,7 @@ export const QuizContextProvider = ({ children }) => {
     setCurrentPoints({ points: 0, locked: true });
   };
 
-  const addCurrentPoint = (p) => {
+  const addCurrentPoints = (p) => {
     setCurrentPoints({ points: currentPoints.points + p, locked: false });
   };
 
@@ -46,7 +46,7 @@ export const QuizContextProvider = ({ children }) => {
         setNextQuestion,
         currentPoints,
         wrongAnswer,
-        addCurrentPoint,
+        addCurrentPoints,
       }}
     >
       {children}
