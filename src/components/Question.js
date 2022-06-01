@@ -48,19 +48,14 @@ export const Question = ({ question }) => {
   const {
     currentQuestion,
     totalPoints,
-    currentPoints,
-    wrongAnswer,
-    addCurrentPoints,
+    currentPoints, // object, manage points for current question - format: { points: x, locked: <true/false> }
+    wrongAnswer, // function, sets points = 0 and locked = true
+    addCurrentPoints, // function, takes parameter x and adds x to currentPoints
   } = useQuizContext();
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswers, setSelectedAnswers] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
   const [answerFeedback, setAnswerFeedback] = useState({});
-  // manage points for current question
-  // const [currentPoints, setCurrentPoints] = useState({
-  //   points: 0,
-  //   locked: false,
-  // });
 
   // ---------- RESET ----------
   // If you jump to the next question, there should be a reset of selected answers and their visual feedback

@@ -56,7 +56,8 @@ export const QuizScreen = () => {
           disabled={currentQuestion >= questions.length - 1}
           onClick={() => {
             if (currentQuestion < questions.length - 1) {
-              // setPointsTotal();
+              // TODO: currentPoints zu totalPoints addieren, falsch !locked
+              // TODO: currentPoints resetten
               setNextQuestion(currentQuestion + 1);
             }
           }}
