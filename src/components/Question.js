@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "../contexts/UserContext";
+import { useQuizContext } from "../contexts/QuizContext";
 import { MdHelp } from "react-icons/md";
 
 const AnswerButton = ({ answer, feedback, ...rest }) => {
@@ -45,7 +45,7 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
 export const Question = ({ question }) => {
   // Context -- Note: currentQuestion = index
   const { currentQuestion, setPoints, totalPoints, setNextQuestion } =
-    useUser();
+    useQuizContext();
   // remembers clicked answers in form of { answer-<index>: true, ... }
   const [selectedAnswers, setSelectedAnswers] = useState(null);
   // gives visual feedback for selected answers in form of [null/correct/incorrect,...] (using <answer-index> as index)
@@ -115,7 +115,7 @@ export const Question = ({ question }) => {
       })}
       <button
         onClick={() => {
-          setPoints(totalPoints + 4);
+          setPoints(4);
         }}
       >
         Test Context (totalPoints)

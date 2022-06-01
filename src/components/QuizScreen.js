@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useUser } from "../contexts/UserContext";
+import { useQuizContext } from "../contexts/QuizContext";
 import { Question } from "./Question";
 
 export const QuizScreen = () => {
   const [questions, setQuestions] = useState([]);
   // currentQuestion is the index of the current question from the questions array,
   // comes from Context and starts with -1
-  const { currentQuestion, setNextQuestion, totalPoints } = useUser();
+  const { currentQuestion, setNextQuestion, totalPoints } = useQuizContext();
 
   useEffect(() => {
     (async () => {
