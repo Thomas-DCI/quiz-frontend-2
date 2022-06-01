@@ -5,7 +5,9 @@ import { useQuizContext } from "../contexts/QuizContext";
 export const Highscores = () => {
   // ----- State for Highscores -----
   const [highscores, setHighscores] = useState([]);
-  const { quizFinished, totalPoints } = useQuizContext();
+  const { quizFinished, totalPoints, setPoints } = useQuizContext();
+  const [userHighScore, setUserHighScore] = useState({ player: "", points: 0 });
+  const [highScoreSaved, setHighScoreSaved] = useState(false);
   // ----- Load Highscores, when loading Component -----
   useEffect(() => {
     const loadHighscore = async () => {
@@ -32,6 +34,22 @@ export const Highscores = () => {
     };
     loadHighscore();
   }, []);
+  useEffect(() => {
+    console.log({ userHighScore });
+  }, [userHighScore]);
+
+  const saveHighscore = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_HOST}/highscores`,
+        userHighScore
+      );
+      console.log(response);
+      setHighScoreSaved(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // ----- Render Component -----
   return (
@@ -56,12 +74,22 @@ export const Highscores = () => {
           ))}
         </tbody>
       </table>
-      {quizFinished === true ? (
+      {quizFinished !== true ? (
         <div>
           {`Du hast ${totalPoints} Punkte erreicht.`}
           <br />
           {"Trage Deinen Namen ein und speichere Deinen Highscore:"}
-          <input type="text" value="" placeholder="Dein Name" />
+          <br />
+          <input
+            type="text"
+            defaultValue=""
+            placeholder="Dein Name"
+            minLength={2}
+            onChange={(e) => {
+              setUserHighScore({ player: e.target.value, points: totalPoints });
+            }}
+          />
+          <button onClick={() => saveHighscore()}>Speichern</button>
         </div>
       ) : undefined}
     </main>
