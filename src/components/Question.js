@@ -71,8 +71,14 @@ export const Question = ({ question }) => {
         );
         // figure out if selected answer was correct or not
         let result;
-        if (question.answers[answerIndex].points) result = "correct";
-        else result = "incorrect";
+        if (question.answers[answerIndex].points) {
+          result = "correct";
+          // setze punkte hoch
+        } else {
+          // punkte für diese frage auf 0 setzen und sperren,
+          // dass weitere punkte hinzugefügt werden können
+          result = "incorrect";
+        }
         newFeedback = { ...newFeedback, [answerIndex]: result };
       });
       setAnswerFeedback(newFeedback);
@@ -83,10 +89,8 @@ export const Question = ({ question }) => {
   // If you jump to the next question, there should be a reset of selected answers and their visual feedback
   useEffect(() => {
     // reset selected answers
-    // const selectedAnswersReset = question.answers.map(() => false);
     setSelectedAnswers({});
     // reset visual feedback (each element of array represents corresponding answer)
-    // const newFeedback = question.answers.map(() => null);
     setAnswerFeedback({});
   }, [currentQuestion]);
 
