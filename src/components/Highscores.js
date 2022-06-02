@@ -9,6 +9,7 @@ export const Highscores = () => {
   const { quizFinished, totalPoints, setPoints } = useQuizContext();
   const [userHighScore, setUserHighScore] = useState({ player: "", points: 0 });
   const [highScoreSaved, setHighScoreSaved] = useState(false);
+  const [reload, setReload] = useState();
   // ----- Load Highscores, when loading Component -----
   useEffect(() => {
     const loadHighscore = async () => {
@@ -34,7 +35,7 @@ export const Highscores = () => {
       }
     };
     loadHighscore();
-  }, []);
+  }, [reload]);
   useEffect(() => {
     console.log({ userHighScore });
   }, [userHighScore]);
@@ -48,8 +49,6 @@ export const Highscores = () => {
         );
         console.log(response);
         setHighScoreSaved(true);
-        // TODO: Seite neu laden
-        window.location.reload();
       } catch (error) {
         console.log(error);
       }
@@ -94,8 +93,9 @@ export const Highscores = () => {
             }}
           />
           <button
-            onClick={() => {
-              saveHighscore();
+            onClick={async () => {
+              await saveHighscore();
+              setReload(true);
             }}
           >
             Speichern
