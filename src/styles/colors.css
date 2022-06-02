@@ -1,0 +1,14 @@
+:root {
+  /* --background: #2a1b3d; */
+  --background: #2a1b3d;
+  --black: #2a1b3d;
+  --red: #d83f87;
+  --purple: #6e4e95;
+  --purple-light: hsl(267, 31%, 55%);
+  --pale-green: #a4b3b6;
+  --light-blue: hsl(214, 56%, 62%);
+  --dark-blue: hsl(214, 69%, 14%);
+  --green: hsl(182, 25%, 50%);
+  --sepia: hsl(16, 14%, 62%);
+  /* --red: hsl(6, 56%, 62%); */
+}

@@ -1,0 +1,9 @@
+.paragraphWithIcon {
+  display: flex;
+  vertical-align: center;
+}
+.link__icon {
+  margin-left: 0.67rem;
+  margin-right: 0.33rem;
+  color: var(--light-blue);
+}

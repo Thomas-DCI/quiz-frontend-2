@@ -1,0 +1,25 @@
+.highscores__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.highscores__table {
+  border-collapse: collapse;
+}
+.highscores__table tbody tr:nth-last-of-type(odd) {
+  background-color: hsl(214, 56%, 62%, 0.2);
+}
+.highscores__table th,
+.highscores__table td {
+  padding: 1rem;
+}
+.highscores__table th {
+  text-align: left;
+}
+.highscores__table tr th:nth-last-of-type(1), /* rank */
+.highscores__table tr th:nth-last-of-type(3), /* score */
+.highscores__table tr td:nth-last-of-type(1),
+.highscores__table tr td:nth-last-of-type(3) {
+  text-align: center;
+}

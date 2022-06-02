@@ -1,38 +1,80 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600;700;800&family=Poppins:wght@400;700&display=swap");
+@import url("./styles/colors.css");
+@import url("./styles/question.css");
+* {
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: var(--background);
+  color: #ffffffcc;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  background-color: var(--dark-blue);
+  color: ghostwhite;
+  font-size: 2rem;
+  line-height: 3rem;
+  font-weight: 800;
   text-align: center;
+  font-family: "Azeret Mono", monospace;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 1px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  margin-top: 60px;
+  padding: 1.2em;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: var(--dark-blue);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.footercontainer {
   display: flex;
-  flex-direction: column;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+button {
+  border: none;
+  background-color: var(--dark-blue);
+  padding: 12px;
   color: white;
+  text-shadow: 2px 2px 0px #00000033;
+  border-radius: 5px;
 }
-
-.App-link {
-  color: #61dafb;
+.welcome__link {
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.5rem;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.welcome__link:hover {
+  color: aquamarine;
+}
+footer a:link,
+footer a:visited,
+footer a:active {
+  color: ghostwhite;
+  text-decoration: none;
+}
+h1 {
+  font-size: 1.5em;
+}
+.overlay__points {
+  background-color: #00000066;
+  position: absolute;
+  top: 0;
+  /* right: 0; */
+  /* transform: translate(150px, 50px); */
+  padding: 1.67rem 1.33rem;
 }

@@ -1,0 +1,24 @@
+.answer-button {
+  padding: 12px;
+  border: none;
+  background-color: var(--purple);
+  border-radius: 5px;
+  color: white;
+  text-align: start;
+  font-size: 1.125rem;
+  margin: 2px;
+}
+.answer-button:not(:first-of-type) {
+  margin-top: 0.5rem;
+}
+.answer-button:hover {
+  background-color: var(--purple-light);
+  cursor: pointer;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
