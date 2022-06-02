@@ -1,0 +1,7 @@
+.nextQuestion__button {
+  background-color: var(--light-blue);
+}
+.nextQuestion__button:hover {
+  cursor: pointer;
+  background-color: var(--green);
+}

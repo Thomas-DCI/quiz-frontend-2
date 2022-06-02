@@ -13,7 +13,7 @@ export const QuizContextProvider = ({ children }) => {
   });
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const setPointsTotal = (p) => {
+  const addTotalPoints = (p) => {
     setTotalPoints(parseInt(totalPoints + p));
   };
 
@@ -31,6 +31,10 @@ export const QuizContextProvider = ({ children }) => {
     setCurrentPoints({ points: currentPoints.points + p, locked: false });
   };
 
+  const resetCurrentPoints = () => {
+    setCurrentPoints({ points: 0, locked: false });
+  };
+
   useEffect(() => {
     if (totalPoints > 0) {
       console.log(`points is ${totalPoints}`);
@@ -42,12 +46,13 @@ export const QuizContextProvider = ({ children }) => {
     <QuizContext.Provider
       value={{
         totalPoints,
-        setPointsTotal,
+        addTotalPoints,
         currentQuestion,
         setNextQuestion,
         currentPoints,
-        wrongAnswer,
         addCurrentPoints,
+        resetCurrentPoints,
+        wrongAnswer,
         quizFinished,
         setQuizFinished,
       }}

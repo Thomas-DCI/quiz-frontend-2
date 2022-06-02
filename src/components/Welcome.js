@@ -15,7 +15,10 @@ export const Welcome = () => {
       </p>
       <p>Viel Spaß und hol' Dir den Highscore!</p>
       <p>
-        <Link to="/quiz">Zum Quiz!</Link> (beim ersten Mal auf next klicken!)
+        <Link to="/quiz" className="welcome__link">
+          Zum Quiz!
+        </Link>{" "}
+        (beim ersten Mal auf next klicken!)
       </p>
     </>
   );
