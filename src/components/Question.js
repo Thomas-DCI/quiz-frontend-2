@@ -3,6 +3,7 @@ import { useQuizContext } from "../contexts/QuizContext";
 import { MdHelp } from "react-icons/md";
 
 const AnswerButton = ({ answer, feedback, ...rest }) => {
+  const { currentPoints } = useQuizContext();
   return (
     <button
       className="answer-button"
@@ -14,6 +15,8 @@ const AnswerButton = ({ answer, feedback, ...rest }) => {
             ? "var(--green)"
             : feedback === "incorrect"
             ? "var(--red)"
+            : currentPoints.locked
+            ? "#66666688"
             : null,
       }}
       {...rest}
@@ -124,23 +127,9 @@ export const Question = ({ question }) => {
           />
         );
       })}
-      {/* <button
-        onClick={() => {
-          setPoints(4);
-        }}
-      >
-        Test Context (totalPoints)
-      </button> */}
-      {/* <button
-        onClick={() => {
-          setNextQuestion(currentQuestion + 1);
-        }}
-      >
-        Test Context (currentQuestion)
-      </button> */}
-      <p>currentPoints: {JSON.stringify(currentPoints)}</p>
+      {/* <p>currentPoints: {JSON.stringify(currentPoints)}</p>
       <p>totalPoints: {totalPoints}</p>
-      <p>currentQuestion: {currentQuestion}</p>
+      <p>currentQuestion: {currentQuestion}</p> */}
     </div>
   );
 };

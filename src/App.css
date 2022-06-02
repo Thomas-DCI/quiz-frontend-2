@@ -6,7 +6,7 @@
 }
 body {
   background-color: var(--background);
-  color: white;
+  color: #ffffffcc;
 }
 header {
   position: fixed;
@@ -50,6 +50,7 @@ button {
   background-color: var(--dark-blue);
   padding: 12px;
   color: white;
+  text-shadow: 2px 2px 0px #00000033;
   border-radius: 5px;
 }
 .welcome__link {

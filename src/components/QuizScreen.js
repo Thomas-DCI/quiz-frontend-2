@@ -13,6 +13,7 @@ export const QuizScreen = () => {
     currentQuestion,
     setNextQuestion,
     currentPoints,
+    totalPoints,
     addTotalPoints,
     resetCurrentPoints,
     setQuizFinished,
@@ -58,35 +59,54 @@ export const QuizScreen = () => {
             currentQuestion={currentQuestion}
           />
         ) : undefined}
-        <button
-          className="nextQuestion__button"
+        <div
           style={{
             marginTop: 20,
-            minWidth: 180,
-            alignSelf: "end",
-          }}
-          // disabled={currentQuestion >= questions.length - 1}
-          onClick={() => {
-            if (currentQuestion < questions.length - 1) {
-              // console.log(currentPoints);
-              // Wenn Frage nicht falsch beantwortet wurde
-              // werden die aktuellen Punkte zu den Gesamtpunkten
-              // hinzu addiert
-              if (!currentPoints.locked) {
-                addTotalPoints(currentPoints.points);
-              }
-              // bevor es zur nächsten Frage geht, werden die
-              // aktuellen Punkte zurück gesetzt
-              resetCurrentPoints();
-              setNextQuestion(currentQuestion + 1);
-            } else {
-              setQuizFinished(true);
-              navigate("/highscores");
-            }
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          Next
-        </button>
+          <p
+            style={{
+              fontSize: "1rem",
+            }}
+          >
+            <strong>Aktuelle Punkte:</strong> {currentPoints.points}
+            <br />
+            <strong>Gesamt-Punkte:</strong> {totalPoints}
+          </p>
+          <button
+            className="nextQuestion__button"
+            style={{
+              minWidth: 180,
+              fontSize: "1rem",
+            }}
+            // disabled={currentQuestion >= questions.length - 1}
+            onClick={() => {
+              if (currentQuestion < questions.length - 1) {
+                // console.log(currentPoints);
+                // Wenn Frage nicht falsch beantwortet wurde
+                // werden die aktuellen Punkte zu den Gesamtpunkten
+                // hinzu addiert
+                if (!currentPoints.locked) {
+                  addTotalPoints(currentPoints.points);
+                }
+                // bevor es zur nächsten Frage geht, werden die
+                // aktuellen Punkte zurück gesetzt
+                resetCurrentPoints();
+                setNextQuestion(currentQuestion + 1);
+              } else {
+                setQuizFinished(true);
+                navigate("/highscores");
+              }
+            }}
+          >
+            Nächste Frage
+          </button>
+        </div>
       </div>
     </div>
   );

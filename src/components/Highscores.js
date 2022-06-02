@@ -59,26 +59,8 @@ export const Highscores = () => {
     <main className="highscores__container">
       <h2>Highscores</h2>
       {/* <div>{JSON.stringify(highscores)}</div> */}
-      <table className="highscores__table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {highscores.map((highscore, index) => (
-            <tr key={`hs-${index}`}>
-              <td>{index + 1}</td>
-              <td>{highscore.player}</td>
-              <td>{highscore.points}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       {quizFinished === true && !highScoreSaved ? (
-        <div>
+        <div style={{ textAlign: "center" }}>
           {`Du hast ${totalPoints} Punkte erreicht.`}
           <br />
           {"Trage Deinen Namen ein und speichere Deinen Highscore:"}
@@ -101,7 +83,25 @@ export const Highscores = () => {
             Speichern
           </button>
         </div>
-      ) : undefined}
+      ) : undefined}{" "}
+      <table className="highscores__table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody>
+          {highscores.map((highscore, index) => (
+            <tr key={`hs-${index}`}>
+              <td>{index + 1}</td>
+              <td>{highscore.player}</td>
+              <td>{highscore.points}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </main>
   );
 };
