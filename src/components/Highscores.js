@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Highscores.css";
 import { useQuizContext } from "../contexts/QuizContext";
+
 export const Highscores = () => {
   // ----- State for Highscores -----
   const [highscores, setHighscores] = useState([]);
@@ -47,6 +48,8 @@ export const Highscores = () => {
         );
         console.log(response);
         setHighScoreSaved(true);
+        // TODO: Seite neu laden
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }
@@ -90,7 +93,13 @@ export const Highscores = () => {
               setUserHighScore({ player: e.target.value, points: totalPoints });
             }}
           />
-          <button onClick={() => saveHighscore()}>Speichern</button>
+          <button
+            onClick={() => {
+              saveHighscore();
+            }}
+          >
+            Speichern
+          </button>
         </div>
       ) : undefined}
     </main>

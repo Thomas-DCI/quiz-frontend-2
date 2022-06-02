@@ -39,6 +39,7 @@ export const QuizScreen = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginBottom: "2.5rem",
       }}
     >
       <div
