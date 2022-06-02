@@ -69,15 +69,17 @@ export const QuizScreen = () => {
             justifyContent: "space-between",
           }}
         >
-          <p
-            style={{
-              fontSize: "1rem",
-            }}
-          >
-            <strong>Aktuelle Punkte:</strong> {currentPoints.points}
-            <br />
-            <strong>Gesamt-Punkte:</strong> {totalPoints}
-          </p>
+          {currentQuestion > -1 ? (
+            <p
+              style={{
+                fontSize: "1rem",
+              }}
+            >
+              <strong>Aktuelle Punkte:</strong> {currentPoints.points}
+              <br />
+              <strong>Gesamt-Punkte:</strong> {totalPoints}
+            </p>
+          ) : null}
           <button
             className="nextQuestion__button"
             style={{
